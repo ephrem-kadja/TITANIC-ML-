@@ -1,0 +1,53 @@
+1. EDA
+2. Data Cleaning
+3. Feature Engineering
+4. Encoding & Scaling
+5. Split train/test
+6. Model Training
+7. Evaluation
+8. Improvement
+
+
+
+
+PROGRESSION
+
+EDA ✔
+STRUCTURE ML ✔
+CLEANING ➜ prochain step
+
+
+
+
+
+
+bien structuré
+
+EDA
+  ↓
+Cleaning
+  ↓
+Feature Engineering
+  ↓
+Encoding
+  ↓
+Pipeline ML (scikit-learn)
+      ↙        ↘
+ Train set   Validation set
+      ↓
+   Model
+      ↓
+ Evaluation
+      ↓
+ Iteration (retour feature engineering / cleaning)
+
+
+
+1. EDA (comprendre)
+2. Cleaning (corriger)
+3. Feature Engineering (créer valeur)
+4. Encoding + Scaling (préparer machine)
+5. Split (éviter fuite de données)
+6. Model Training
+7. Evaluation
+8. Iteration (retour amélioration)

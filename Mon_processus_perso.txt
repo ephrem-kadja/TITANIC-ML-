@@ -1,0 +1,239 @@
+📘 FICHE EDA — TITANIC (À RÉUTILISER)
+🔍 1. Compréhension du dataset
+🎯 Objectif
+
+Prédire :
+
+Survived (0 = mort, 1 = vivant)
+
+👉 Type de problème :
+
+Classification binaire (supervisé)
+📊 2. Structure des données
+Nombre de lignes : 891
+Nombre de colonnes : 12
+
+🔎 Types de variables
+
+🔢 Numériques
+Age
+Fare
+SibSp
+Parch
+
+🔤 Catégorielles
+Sex
+Pclass
+Embarked
+
+⚠️ 3. Valeurs manquantes
+
+Age → 177
+Cabin → 687
+Embarked → 2
+
+🧠 Interprétation
+
+Age → important mais incomplet → à corriger
+Cabin → trop vide → à supprimer (V1)
+Embarked → facile à remplir
+
+📈 4. Analyse statistique
+
+🎯 Survived
+38% survivent
+62% meurent
+
+👉 dataset déséquilibré
+
+👩‍🦰 Survie par sexe
+Femmes → 74% survivent
+Hommes → 18% survivent
+
+👉 Sex = variable très importante
+
+💰 Survie par classe
+Classe 1 → 63%
+Classe 2 → 47%
+Classe 3 → 24%
+
+👉 Pclass influence fortement la survie
+
+🧠 5. Insights importants
+
+✔️ Les femmes survivent beaucoup plus
+✔️ Les riches survivent plus
+✔️ Les pauvres meurent plus
+✔️ Le dataset est déséquilibré
+
+🔥 6. Analyse avancée (à compléter)
+
+👉 Combinaison :
+
+df.groupby(["Sex", "Pclass"])["Survived"].mean()
+
+Objectif :
+
+comprendre les interactions entre variables
+
+⚙️ 7. Code EDA de base (réutilisable)
+import pandas as pd
+
+df = pd.read_csv("train.csv")
+
+# Aperçu
+print(df.head())
+
+# Structure
+print(df.info())
+
+# Valeurs manquantes
+print(df.isnull().sum())
+
+# Statistiques
+print(df.describe())
+
+# Analyse cible
+print(df["Survived"].value_counts(normalize=True))
+
+# Analyse simple
+print(df.groupby("Sex")["Survived"].mean())
+print(df.groupby("Pclass")["Survived"].mean())
+
+# Analyse combinée
+
+print(df.groupby(["Sex", "Pclass"])["Survived"].mean())
+
+🧠 8. Réflexes ingénieur
+
+Toujours faire :
+
+1. Comprendre les données
+2. Identifier les problèmes (NaN, outliers)
+3. Analyser les relations avec la target
+4. Ne jamais coder le modèle sans EDA
+
+
+
+Suite 
+
+1. Objectif du projet
+Prédire : Survived
+Type : Classification supervisée binaire
+
+0 = mort
+1 = survivant
+
+🔷 2. Vue globale du dataset
+📊 Répartition cible
+0 → 61.6% (morts)
+1 → 38.4% (survivants)
+
+🧠 Insight :
+
+Dataset déséquilibré
+Un modèle naïf peut tricher en prédisant toujours "0"
+
+🔷 3. Analyse des variables clés
+👤 Sexe (Sex)
+female → 0.742 (74.2%)
+male   → 0.188 (18.8%)
+
+🧠 Conclusion :
+
+Variable la plus influente
+Forte différence de survie selon le sexe
+🎟 Classe (Pclass)
+1 → 0.629
+2 → 0.473
+3 → 0.242
+
+🧠 Conclusion :
+
+Plus la classe est élevée → plus la survie augmente
+Indicateur de statut social + accès aux ressources
+⚡ Combinaison Sexe + Classe (très important)
+female, 1 → 0.968
+female, 2 → 0.921
+female, 3 → 0.500
+
+male, 1 → 0.369
+male, 2 → 0.157
+male, 3 → 0.135
+
+🧠 Insights clés :
+
+Le sexe domine fortement
+La classe amplifie ou réduit cet effet
+Extrêmes :
+🟢 Meilleur cas : femme + classe 1 (96.8%)
+🔴 Pire cas : homme + classe 3 (13.5%)
+🔷 4. Valeurs manquantes
+Age      → 177
+Cabin    → 687
+Embarked → 2
+
+🧠 Interprétation ingénieur :
+
+Age → important mais récupérable
+Cabin → trop vide → peu exploitable brut
+Embarked → facile à corriger
+
+🔷 5. Analyse des distributions
+💰 Fare (prix)
+Forte dispersion
+Présence d’outliers (jusqu’à 512)
+Distribution asymétrique (skewed)
+
+🧠 Impact :
+
+Moyenne ≠ bonne mesure centrale
+Médiane plus robuste
+🔷 6. Insights globaux
+
+✔ Le sexe est la variable la plus discriminante
+✔ La classe sociale influence fortement la survie
+✔ Les femmes survivent beaucoup plus
+✔ Les hommes en 3e classe sont les plus vulnérables
+✔ Dataset fortement structuré → bon pour ML
+
+🔷 7. Features importantes à retenir
+
+🔥 Variables clés :
+
+Sex
+Pclass
+Age (après traitement)
+
+⚡ Feature engineering potentiel :
+
+FamilySize = SibSp + Parch + 1
+Sex + Pclass (interaction)
+Age group (enfant/adulte/vieux)
+
+🔷 8. Code EDA réutilisable (template universel)
+
+🧪 Inspection générale
+
+df.head()
+df.info()
+df.describe()
+df.isnull().sum()
+
+📊 Analyse cible
+
+df["Survived"].value_counts(normalize=True)
+
+🔍 Analyse variables importantes
+
+df.groupby("Sex")["Survived"].mean()
+df.groupby("Pclass")["Survived"].mean()
+df.groupby(["Sex", "Pclass"])["Survived"].mean()
+
+🧠 9. Réflexes ingénieur à retenir
+
+✔ Toujours commencer par comprendre les données
+✔ Ne jamais coder un modèle sans EDA
+✔ Chercher les relations entre variables
+✔ Toujours analyser les combinaisons (pas une variable seule)
+✔ Corrélation ≠ causalité
