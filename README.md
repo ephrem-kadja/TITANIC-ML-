@@ -120,7 +120,7 @@ titanic-ml-project/
 │   ├── test.csv
 │
 ├── notebooks/
-│   └── eda.ipynb
+│   └── v1_Titanic_Logistic_Regression.ipynb
 │
 ├── src/
 │   └── (cleaning, preprocessing, model)
